@@ -1,0 +1,9 @@
+<h1>Welcome to {{title}}</h1>
+
+<div>
+  <ul>
+  {{#each post}}
+    <li><b><a class="decoration">{{this.authorUserName}}</b>: {{this.content}}</a></li>
+  {{/each}}
+</ul>
+</div>

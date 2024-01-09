@@ -1,0 +1,16 @@
+<form action="/posts/profile" method="post">
+<h1>Welcome {{user.userName}}</h1>
+
+<div>
+  <ul>
+  {{#each post}}
+    <li><b><a class="decoration" href="/posts/profile/{{this.id}}">{{this.authorUserName}}</b>: {{this.content}}</a></li>
+  {{/each}}
+</ul>
+</div>
+
+    <label for="Content"><b>Post:</b></label>
+    <input type="text" name="content" required>
+
+    <button type="'submit">Create a Post</button>
+</form>

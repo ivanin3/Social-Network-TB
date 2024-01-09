@@ -1,0 +1,38 @@
+* {
+    background-color: goldenrod;
+    color: black;
+  }
+
+  h1 {
+text-align: center;
+font-size: 50px;
+  }
+
+  .decoration {
+    text-decoration: none;
+  }
+
+  button {
+    background-color: black;
+    color: goldenrod;
+  }
+
+  button:hover {
+    background-color: goldenrod;
+    color: black;
+  }
+
+  .postOptions {
+    text-align: center;
+  }
+
+  .buttons {
+    display: flex;
+    justify-content: center;
+  }
+
+  .buttonrelo {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+  }
