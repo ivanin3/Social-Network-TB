@@ -4,6 +4,8 @@ const router = express.Router();
 const isAuthenticated = require("../middleware/isauthenticated");
 const passport = require('passport');
 const prisma = require('../prisma/seed');
+const upload = require('../config/multer');
+const handleUpload = require('../middleware/handleUpload');
 
 
 router.get('/login', (req, res) => {
@@ -39,6 +41,31 @@ router.post('/profile', async (req, res) => {
         },
     });
     res.redirect('/posts/profile');
+});
+
+router.put('/profile', upload.single('photo'), async (req, res) => {
+    try {
+        const b64 = Buffer.from(req.file.buffer).toString("base64");
+        let dataURI = "data" + req.file.mimetype + ";base64," + b64;
+
+        const cldRes = await handleUpload(dataURI);
+
+        const userUpdated = await prisma.user.update({
+            where: {
+                userId: req.user.userId,
+            },
+            data: {
+                userName: req.body.userName,
+                email: req.body.email,
+                photo: cldRes.secure_url,
+            },
+        });
+
+        res.redirect('/profile');
+    } catch (error) {
+        console.log(error);
+        res.redirect('/profile');
+    }
 });
 
 router.get('/profile/:id', async (req, res) => {
