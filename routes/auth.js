@@ -3,6 +3,7 @@ const bcrypt = require('bcrypt');
 const router = express.Router();
 const passport = require('passport');
 const prisma = require ('../prisma/seed');
+const transporter = require("../config/nodemailer");
 
 router.get('/login', (req, res) => {
   res.render('login', { error: req.flash("error")});
@@ -23,6 +24,22 @@ router.post('/register', async (req, res) => {
         password: hashedPassword,
       }
     });
+
+    let mailOptions = {
+      from: 'TB-social-network@gmail.com',
+      to: req.body.email,
+      subject: 'Welcome to TB-Social Network',
+      text: `Welcome ${newUser.userName}`
+    };
+    
+    transporter.sendMail(mailOptions, (error, info) => {
+      if (error) {
+          console.log(error);
+      } else {
+          console.log('Correo enviado: ' + info.response);
+      }
+    });
+
     res.redirect('/posts/login');
   } catch (error) {
     console.log(error)

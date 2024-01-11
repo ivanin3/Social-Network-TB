@@ -1,3 +1,4 @@
+require('dotenv').config();
 const express = require('express');
 const bcrypt = require('bcrypt');
 const router = express.Router();
@@ -31,17 +32,26 @@ router.get('/profile', isAuthenticated, async (req, res) => {
     res.render('profile', { title: 'My profile', user: req.user, post: profilePosts })
 });
 
-router.post('/profile', async (req, res) => {
-    const { content } = req.body;
-    console.log(req.user);
-    await prisma.post.create({
-        data: {
-            content,
-            authorUserName: req.user.userName,
-        },
+router.post('/profile', upload.single('photo'), async (req, res) => {
+    try {
+        const b64 = Buffer.from(req.file.buffer).toString("base64");
+        let dataURI = "data" + req.file.mimetype + ";base64," + b64;
+
+        const cldRes = await handleUpload(dataURI);
+
+        await prisma.post.create({
+            data: {
+                userName: req.body.userName,
+                email: req.body.email,
+                photo: cldRes.secure_url,
+            },
+        });
+    res.redirect('/posts');
+    }catch (error) {
+        console.log(error);
+        res.redirect('/posts/profile');
+    }
     });
-    res.redirect('/posts/profile');
-});
 
 router.put('/profile', upload.single('photo'), async (req, res) => {
     try {

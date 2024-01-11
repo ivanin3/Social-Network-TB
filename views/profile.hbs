@@ -1,19 +1,26 @@
-<form action="/posts/profile" method="post">
-<h1>Welcome {{user.userName}}</h1>
-
 <div>
-  <ul>
+  <h1>Welcome {{user.userName}}</h1>
+
+
+    <ul>
   {{#each post}}
     <li><b><a class="decoration" href="/posts/profile/{{this.id}}">{{this.authorUserName}}</b>: {{this.content}}</a></li>
   {{/each}}
-</ul>
+    </ul>
 </div>
 
+<form action="/posts/profile" method="post" enctype="multipart/form-data">
     <label for="Content"><b>Post:</b></label>
     <input type="text" name="content" required>
+    
 
+    <label for="photo"><b>Photo:</b> </label>
+    <input type="file" name="photo">
+    
     <button type="'submit">Create a Post</button>
+
     <br><br><br><br><br>
-    <a href="/posts/profile/edit">Edit Profile</a>
+
+    <a href="/posts/profile/editprofile">Edit Profile</a>
     <a href="/login">Logout</a>
 </form>
