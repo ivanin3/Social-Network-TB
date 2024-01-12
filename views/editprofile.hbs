@@ -1,0 +1,19 @@
+ <h1>Edit Profile</h1>
+
+    <form action="/posts/profile/edit/{{user.userName}}" method="post" enctype="multipart/form-data">
+        <label for="userName"><b>Username:</b></label>
+        <input type="text" name="userName" value="{{user.userName}}">
+
+        <label for="email"><b>Email:</b></label>
+        <input type="text" name="email" value="{{user.email}}">
+
+        <label for="password"><b>Password:</b></label>
+        <input type="password" name="password">
+
+        <label for="photo"><b>Photo:</b></label>
+        <input type="file" name="photo">
+
+        <button type="submit">Update Profile</button>
+    </form>
+
+    <a href="/posts/profile">Back to Profile</a>

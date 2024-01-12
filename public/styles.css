@@ -36,3 +36,8 @@ font-size: 50px;
     flex-direction: row;
     justify-content: flex-end;
   }
+
+  img {
+  width: 200px; 
+  border-radius: 25px;
+  }

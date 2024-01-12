@@ -1,4 +1,4 @@
-const cloudinary = require("cloudinary").v2;
+const cloudinary = require("../config/cloudinary");
 
 async function handleUpload(file) {
   const res = await cloudinary.uploader.upload(file, {

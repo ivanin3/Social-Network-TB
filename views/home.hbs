@@ -3,7 +3,8 @@
 <div>
   <ul>
   {{#each post}}
-    <li><b><a class="decoration">{{this.authorUserName}}</b>: {{this.content}}</a></li>
+    <li><b><a class="decoration">{{this.authorUserName}}</b>: {{this.content}}
+    <img src="{{this.photo}}" alt="Post Image"></a></li>
   {{/each}}
 </ul>
 </div>

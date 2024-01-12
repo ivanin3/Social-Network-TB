@@ -26,7 +26,7 @@ router.post('/register', async (req, res) => {
     });
 
     let mailOptions = {
-      from: 'TB-social-network@gmail.com',
+      from: 'TB-social-network',
       to: req.body.email,
       subject: 'Welcome to TB-Social Network',
       text: `Welcome ${newUser.userName}`
