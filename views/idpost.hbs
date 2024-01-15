@@ -1,12 +1,17 @@
 <div class="postOptions">
-<h2>{{post.authorUserName}}</h2>
-<p><b>Post:</b> {{post.content}}
-<img src={{post.photo}} alt="post-image"></p>
-<div class="buttons">
-<form action="/posts/profile/delete/{{post.id}}?_method=DELETE" method="post">
-<button onclick= "return confirm('Are you sure you want to delete this post?')">Delete Post</button></form>
-<a href="/posts/profile/update/{{post.id}}">
-<button>Edit Post</button></a>
+  <h2>{{post.authorUserName}}</h2>
+  <p><b>Post:</b>
+    {{post.content}}
+    <img src={{post.photo}} alt="post-image" /></p>
+  <div class="buttons">
+    <form
+      action="/posts/profile/delete/{{post.id}}?_method=DELETE"
+      method="post"
+    >
+      <button
+        onclick="return confirm('Are you sure you want to delete this post?')"
+      >Delete Post</button></form>
+    <a href="/posts/profile/update/{{post.id}}">
+      <button>Edit Post</button></a>
+  </div>
 </div>
-</div>
-

@@ -1,5 +1,10 @@
 <div>
   <h1>Welcome {{user.userName}}</h1>
+  {{#if user}}
+    {{#if user.photo}}
+      <img src={{user.photo}} alt="user-image" style="width: 50px; border-radius: 50px">
+    {{/if}}
+  {{/if}}
 
 
     <ul>
@@ -22,5 +27,5 @@
 </form>
     <br><br><br><br><br>
 
-    <a href="/posts/profile/edit/{{user.userName}}">Edit Profile</a>
+    <a href="/posts/profile/edit/{{user.userId}}">Edit Profile</a>
     <a href="/login">Logout</a>

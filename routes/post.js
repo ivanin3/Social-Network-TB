@@ -8,14 +8,6 @@ const prisma = require("../prisma/seed");
 const upload = require("../config/multer");
 const handleUpload = require("../middleware/handleUpload");
 
-router.get("/login", (req, res) => {
-  res.render("login",{title: "Login"});
-});
-
-router.get("/register", (req, res) => {
-  res.render("register", {title: "Sign Up"});
-});
-
 router.get("/", isAuthenticated, async (req, res) => {
   const allPost = await prisma.post.findMany({});
 
@@ -81,55 +73,59 @@ router.put("/profile", upload.single("photo"), async (req, res) => {
   }
 });
 
-router.get("/profile/edit/:userName", async (req, res) => {
-    const { userName } = req.params;
+router.get("/profile/edit/:userId", async (req, res) => {
+    const { userId } = req.params;
     const editProfile = await prisma.user.findUnique({
         where: {
-            userName,
+            userId,
+          
         },
     });
     res.render("editprofile", {
         title: editProfile?.userName,
+        user: editProfile,
     });
 });
 
-router.put("/profile/edit/:userName", upload.single("photo"), async (req, res) => {
-    const { userName } = req.params;
-    const { email, password } = req.body;
+router.put("/profile/edit/:userId", upload.single("photo"), async (req, res) => {
+  const { userId } = req.params;
 
-    try {
-        let updatedUserData = {};
+  try {
 
-        if (userName) updatedUserData.userName = userName;
-        if (email) updatedUserData.email = email;
-        if (password) updatedUserData.password = password;
-        if (req.file) {
-            const b64 = Buffer.from(req.file.buffer).toString("base64");
-            let dataURI = "data:" + req.file.mimetype + ";base64," + b64;
+    if (req.body.userName) {
 
-            const cldRes = await handleUpload(dataURI);
-            updatedUserData.photo = cldRes.secure_url;
-        }
-
-        const updatedUser = await prisma.user.update({
-            where: { userName },
-            data: updatedUserData,
-        });
-
-        res.redirect("/posts/profile");
-    } catch (error) {
-        console.error(error);
-        res.status(500).render("error", { message: "Internal Server Error" });
+      await prisma.user.update({
+        where: {
+          userId,
+        },
+        data: {
+          userName: req.body.userName,
+        },
+      });
     }
+    if (req.file) {
+
+      const b64 = Buffer.from(req.file.buffer).toString("base64");
+      let dataURI = "data:" + req.file.mimetype + ";base64," + b64;
+
+      const cldRes = await handleUpload(dataURI);
+
+      await prisma.user.update({
+        where: {
+          userId,
+        },
+        data: {
+          photo: cldRes.secure_url,
+        },
+      });
+    }
+
+    res.redirect('/posts/profile');
+  } catch (error) {
+    console.log(error);
+    res.redirect('/posts');
+  }
 });
-
-
-
-
-
-
-
-
 
 router.get("/profile/:id", async (req, res) => {
   const { id } = req.params;
@@ -208,16 +204,28 @@ router.get("/profile/update/:id", async (req, res) => {
   res.render("updateid", { title: findPost?.authorUserName, post: findPost });
 });
 
-router.get("/profile/delete/:id", async (req, res) => {
-  const { id } = req.params;
-
-  const findPost = await prisma.post.findUnique({
+router.get("/profile/:userName", async (req, res) => {
+  const { userName } = req.params;
+  const profileView = prisma.user.findUnique ({
     where: {
-      id,
+userName,
     },
   });
-
-  res.render("idpost", { title: findPost?.title, post: findPost });
+  res.render("profile", {
+    title: "Hola",
+    user: req.post.authorUserName,
+    post: profileView,
+  });
 });
+
+router.get("/profile/logout", (req, res) => {
+  req.logout(function (err) {
+    if (err) {
+      return next(err);
+    }
+    res.redirect("/login");
+  });
+});
+
 
 module.exports = router;
