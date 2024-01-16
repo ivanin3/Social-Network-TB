@@ -11,7 +11,7 @@ const handleUpload = require("../middleware/handleUpload");
 router.get("/", isAuthenticated, async (req, res) => {
   const allPost = await prisma.post.findMany({});
 
-  res.render("home", { title: "post", post: allPost });
+  res.render("home", { title: "Latest Posts", post: allPost });
 });
 
 router.get("/profile", isAuthenticated, async (req, res) => {
@@ -215,15 +215,6 @@ userName,
     title: "Hola",
     user: req.post.authorUserName,
     post: profileView,
-  });
-});
-
-router.get("/profile/logout", (req, res) => {
-  req.logout(function (err) {
-    if (err) {
-      return next(err);
-    }
-    res.redirect("/login");
   });
 });
 
