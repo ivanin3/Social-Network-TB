@@ -1,31 +1,33 @@
-<div>
+<div class="profile-container">
   <h1>Welcome {{user.userName}}</h1>
   {{#if user}}
     {{#if user.photo}}
-      <img src={{user.photo}} alt="user-image" style="width: 50px; border-radius: 50px">
+      <img src="{{user.photo}}" alt="user-image" class="user-photo">
     {{/if}}
   {{/if}}
 
-
-    <ul>
-  {{#each post}}
-    <li><b><a class="decoration" href="/posts/profile/{{this.id}}">{{this.authorUserName}}</b>: {{this.content}}</a>
-    <img src="{{this.photo}}" alt="Post-Image"></li>
-  {{/each}}
-    </ul>
+  <ul class="post-list">
+    {{#each post}}
+      <li>
+        <b><a href="/posts/profile/{{this.id}}" class="post-author">{{this.authorUserName}}</a></b>: {{this.content}}
+        <img src="{{this.photo}}" alt="Post-Image" class="post-image">
+      </li>
+    {{/each}}
+  </ul>
 </div>
 
-<form action="/posts/profile" method="post" enctype="multipart/form-data">
-    <label for="Content"><b>Post:</b></label>
-    <input type="text" name="content" required>
-    
+<form action="/posts/profile" method="post" enctype="multipart/form-data" class="post-form">
+  <label for="Content"><b>Post:</b></label>
+  <input type="text" name="content" required class="post-content">
 
-    <label for="photo"><b>Photo:</b> </label>
-    <input type="file" name="photo" required>
-    
-    <button type="'submit">Create a Post</button>
+  <label for="photo"><b>Photo:</b></label>
+  <input type="file" name="photo" required class="post-photo">
+
+  <button type="'submit" class="create-post-btn">Create a Post</button>
 </form>
-    <br><br><br><br><br>
 
-    <a href="/posts/profile/edit/{{user.userId}}">Edit Profile</a>
-    <a href="/profile/logout">Logout</a>
+<div class="profile-links">
+  <a href="/posts/profile/edit/{{user.userId}}" class="edit-profile-link">Edit Profile</a>
+  <a href="/profile/logout" class="logout-link">Logout</a>
+</div>
+
