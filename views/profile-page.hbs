@@ -1,0 +1,18 @@
+<div>
+  <h1>Profile of {{user.userName}}</h1>
+  {{#if user}}
+    {{#if user.photo}}
+      <img src={{user.photo}} alt="user-image" style="width: 50px; border-radius: 50px">
+    {{/if}}
+  {{/if}}
+
+
+    <ul>
+  {{#each post}}
+    <li><b><a class="decoration" href="/posts/profile/{{this.id}}">{{this.authorUserName}}</b>: {{this.content}}</a>
+    <img src="{{this.photo}}" alt="Post-Image"></li>
+  {{/each}}
+    </ul>
+</div>
+
+<a href="/posts">Back to posts</a>

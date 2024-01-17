@@ -204,18 +204,14 @@ router.get("/profile/update/:id", async (req, res) => {
   res.render("updateid", { title: findPost?.authorUserName, post: findPost });
 });
 
-router.get("/profile/:userName", async (req, res) => {
-  const { userName } = req.params;
-  const profileView = prisma.user.findUnique ({
+router.get("/profile/:authorUserName", async (req, res) => {
+  const { authorUserName } = req.params;
+  const profileView = await prisma.post.findUnique ({
     where: {
-userName,
+authorUserName,
     },
   });
-  res.render("profile", {
-    title: "Hola",
-    user: req.post.authorUserName,
-    post: profileView,
-  });
+  res.render("profile-page");
 });
 
 

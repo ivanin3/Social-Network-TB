@@ -6,9 +6,7 @@ router.use('/posts', require('./post'));
 router.use('/', require ('./auth'));
 
 router.get('/', (req, res) => {
-    res.render('home', {
-        title: 'Home Page'
-    });
+    res.render('initial');
   });
 
 module.exports = router;
