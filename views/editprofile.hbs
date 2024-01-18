@@ -1,14 +1,19 @@
- <h1>Edit Profile</h1>
+  <div class="edit-profile-form">
+  <h1>Edit Profile</h1>
+<br>
+  <form action="/posts/profile/edit/{{user.userId}}?_method=PUT" method="post" enctype="multipart/form-data">
+    <div class="form-group">
+      <label for="userName"><b>Username:</b></label>
+      <input type="text" name="userName" value="{{user.userName}}">
+    </div>
 
-    <form action="/posts/profile/edit/{{user.userId}}?_method=PUT" method="post" enctype="multipart/form-data">
-        <label for="userName"><b>Username:</b></label>
-        <input type="text" name="userName" value="{{user.userName}}">
-
-        <label for="photo"><b>Photo:</b></label>
-        <input type="file" name="photo"
-        value="{{user.photo}}">
-
-        <button type="submit">Update Profile</button>
-    </form>
-
-    <a href="/posts/profile">Back to Profile</a>
+    <div class="form-group">
+      <label for="photo"><b>Photo:</b></label>
+      <input type="file" name="photo" value="{{user.photo}}">
+    </div>
+<br><br>
+    <button type="submit">Update Profile</button>
+  </form>
+  </div>
+<br><br>
+  <a href="/posts/profile" class="back-profile-link">Back to Profile</a>

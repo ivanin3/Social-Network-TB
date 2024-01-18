@@ -14,13 +14,6 @@ body {
   color: white;
 }
 
-.container {
-  padding: 100px;
-  border-radius: 20px;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-  text-align: center;
-}
-
 nav {
   background-color: #333;
   padding: 10px;
@@ -45,10 +38,7 @@ nav {
 }
 
 .login-btn,
-.register-btn,
-.create-post-btn,
-.edit-profile-link,
-.logout-link {
+.register-btn {
   padding: 8px 15px;
   border: 1px solid #fff;
   border-radius: 5px;
@@ -56,29 +46,54 @@ nav {
 }
 
 .login-btn:hover,
-.register-btn:hover,
-.create-post-btn:hover,
-.edit-profile-link:hover,
-.logout-link:hover {
+.register-btn:hover {
   background-color: #fff;
-  color: #333;
+  color: #00000071;
 }
 
 .principallink a:hover {
   color: #fad348;
 }
 
-img {
-  width: 25%; /* Haciendo que las imágenes tengan un tamaño 25% más pequeño */
-  border-radius: 15px;
-  object-fit: cover;
+.description-container, .profile-container {
+  max-width: 800px; 
+  margin: 0 auto; 
+  padding: 25px; 
+  background-color: #00000071; 
+  border: 2px solid #fd000065; 
+  border-radius: 10px; 
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
 
-/* Agregando estilos específicos para tus clases Handlebars */
-.user-photo {
-  width: 80px; /* Tamaño específico para la foto de perfil */
-  border-radius: 40px;
-  object-fit: cover;
+.container {
+  padding: 100px;
+  border-radius: 20px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  text-align: center;
+}
+
+.btn-register, .edit-profile-link, .logout-link, .back-profile-link, .edit-post-link, .delete-post-button {
+   padding: 15px 30px;
+  text-decoration: none;
+  background-color: #fff;
+  color: #333;
+  border: 2px solid #ff0000;
+  border-radius: 20px; 
+  transition: background-color 0.3s, color 0.3s;
+}
+
+.btn-register:hover, .edit-profile-link:hover, .logout-link:hover, .back-profile-link:hover, .edit-post-link:hover, .delete-post-button:hover {
+  background-color: #ffffff00;
+  color: #fff;
+}
+
+.edit-profile-link, .logout-link {
+  padding: 10px 30px;
+  
+}
+
+.user-info {
+  margin-bottom: 50px;
 }
 
 .user-details {
@@ -89,52 +104,79 @@ img {
   margin-bottom: 20px;
 }
 
+.user-photo {
+  width: 50px;
+  height: 50px;
+object-fit: cover;
+  border-radius: 10px;
+}
+
 .post-list {
   list-style: none;
   padding: 0;
-}
-
-.post-list li {
-  margin-bottom: 20px;
-  text-align: center; /* Alineando el texto en el centro */
+  margin-bottom: 30px; 
 }
 
 .post-author {
   text-decoration: none;
+  color: #fd000065;
+  display: flex;
+  flex-direction: column; 
+  align-items: center;
+}
+
+.post-content {
   color: #fff;
+  max-width: 300px;
+  word-wrap: break-word;
+  margin-bottom: 50px;
 }
 
-.post-author:hover {
-  text-decoration: underline;
-}
-
-.post-form {
-  margin-top: 20px;
-  text-align: center;
-  width: 40%; /* Reduciendo el cuadrado de escritura de post en un 60% */
-}
-
-.post-content,
-.post-photo {
+.post-image {
+  max-width: 300px; 
+  max-height: 200px; 
   width: 100%;
-  padding: 8px;
-  margin-bottom: 10px;
+  height: auto;
+  border-radius: 10px;
+  object-fit: contain;
+}
+
+.post-form, .edit-profile-form, .postOptions {
+  max-width: 600px;
+  margin: 20px auto;
+  padding: 15px;
+  background-color: #00000071;
+  border: 2px solid #fd000065;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
   box-sizing: border-box;
+  margin-top: 5px;
 }
 
-.profile-links {
-  text-align: center;
-  margin-top: 20px;
+.post-form button, .edit-profile-form button {
+  background-color: #00000071;
+  color: white;
+  padding: 10px 20px;
+  border: 2px solid #fd000065;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s, color 0.3s;
 }
 
-.edit-profile-link,
-.logout-link {
-  text-decoration: none;
-  color: #fff;
-  margin: 0 10px;
+.post-form button:hover, .edit-profile-form button:hover {
+  background-color: #00000071;
+  color: #fd000065;
 }
 
-.edit-profile-link:hover,
-.logout-link:hover {
-  text-decoration: underline;
+.form-group {
+  margin-bottom: 15px;
+  box-sizing: border-box;
+  width: 350px;
+  display: flex;
 }
+
+ 
+ 
+ 
+ 
+ 

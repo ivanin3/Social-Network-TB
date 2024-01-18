@@ -1,33 +1,50 @@
 <div class="profile-container">
-  <h1>Welcome {{user.userName}}</h1>
   {{#if user}}
+        <div class="user-info">
+        <h2>Welcome {{user.userName}}</h2>
+      </div>
     {{#if user.photo}}
-      <img src="{{user.photo}}" alt="user-image" class="user-photo">
+      <div class="user-details">
+        <img src="{{user.photo}}" alt="user-image" class="user-photo" />
+      </div>
     {{/if}}
   {{/if}}
 
   <ul class="post-list">
     {{#each post}}
       <li>
-        <b><a href="/posts/profile/{{this.id}}" class="post-author">{{this.authorUserName}}</a></b>: {{this.content}}
-        <img src="{{this.photo}}" alt="Post-Image" class="post-image">
+        <a href="/posts/profile/{{this.id}}" class="post-author">
+          <div class="post-image-container">
+            <img src="{{this.photo}}" alt="Post-Image" class="post-image" />
+          </div>
+           <div class="post-details">
+            <b>{{this.authorUserName}}</b>
+            <div class="post-content" >{{this.content}}</div>
+          </div>
+        </a>
       </li>
     {{/each}}
   </ul>
 </div>
-
-<form action="/posts/profile" method="post" enctype="multipart/form-data" class="post-form">
+<br>
+<form
+  action="/posts/profile"
+  method="post"
+  enctype="multipart/form-data"
+  class="post-form"
+><div class="form-group">
   <label for="Content"><b>Post:</b></label>
-  <input type="text" name="content" required class="post-content">
-
+  <input type="text" name="content" required/>
+</div>
+<div class="form-group">
   <label for="photo"><b>Photo:</b></label>
-  <input type="file" name="photo" required class="post-photo">
-
+  <input type="file" name="photo" required/>
+</div>
   <button type="'submit" class="create-post-btn">Create a Post</button>
 </form>
-
+<br><br>
 <div class="profile-links">
-  <a href="/posts/profile/edit/{{user.userId}}" class="edit-profile-link">Edit Profile</a>
+  <a href="/posts/profile/edit/{{user.userId}}" class="edit-profile-link">Edit
+    Profile</a>
   <a href="/profile/logout" class="logout-link">Logout</a>
 </div>
-

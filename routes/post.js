@@ -39,6 +39,7 @@ router.post("/profile", upload.single("photo"), async (req, res) => {
 
 router.get("/profile/user/:authorId", async (req, res) => {
   const { authorId } = req.params;
+  const isOwnProfile = req.user && req.user.userId === authorId;
   const profileView = await prisma.user.findUnique({
     where: {
       userId: authorId,
@@ -47,11 +48,13 @@ router.get("/profile/user/:authorId", async (req, res) => {
       posts: true,
     },
   });
-  res.render("profile-page", {
+
+  const destinationView = isOwnProfile ? "profile" : "profile-page";
+
+  res.render(destinationView, {
     profile: profileView,
-    userlogged: req.user,
   });
-  console.log(req.user);
+  console.log("Profile data:", profileView);
 });
 
 router.get("/profile/:id", async (req, res) => {
