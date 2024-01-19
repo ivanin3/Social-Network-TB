@@ -15,6 +15,23 @@ const hbs = create({
 });
 const flash = require('connect-flash');
 
+const swaggerJsDoc = require('swagger-jsdoc');
+const swaggerOptions = {
+  definition: {
+    openapi: '3.0.0',
+    info: {
+      title: 'My API',
+      version: '1.0.0',
+      description: 'A simple Express API',
+    },
+  },
+  apis: ['./routes/*.js'], // paths to files containing Swagger annotations
+};
+const swaggerDocs = swaggerJsDoc(swaggerOptions);
+
+const swaggerUi = require('swagger-ui-express');
+
+
 app.use(morgan('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
@@ -29,6 +46,8 @@ app.use(session({
 app.use(passport.initialize());
 app.use(passport.session());
 app.use(flash());
+
+app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocs));
 
 require('./config/passport');
 
