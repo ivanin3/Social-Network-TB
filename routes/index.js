@@ -7,7 +7,8 @@ router.use('/', require ('./auth'));
 router.use('/posts', require('./profile'));
 
 router.get('/', (req, res) => {
-    res.render('initial');
+    res.render('initial', {
+    title: "TB-Social-Network"});
   });
 
 module.exports = router;

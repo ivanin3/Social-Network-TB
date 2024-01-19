@@ -1,7 +1,15 @@
-<form action="/posts/profile/update/{{post.id}}?_method=PUT" method="post" enctype="multipart/form-data">
+<form
+  action="/posts/profile/update/{{post.id}}?_method=PUT"
+  method="post"
+  enctype="multipart/form-data"
+  class="updated-container"
+>
+<div class="form-group">
   <label for="content"><b>Post:</b></label>
-  <input name="content" type="text" value= '{{post.content}}'/> 
-      <label for="photo"><b>Photo:</b> </label>
-    <input type="file" name="photo">
-  <button type="submit">Update</button>
+  <input name="content" type="text" value="{{post.content}}"/></div>
+  <div class="form-group">
+  <label for="photo"><b>Photo:</b> </label>
+  <input type="file" name="photo" />
+  </div>
+  <button type="submit" class="submit-button">Update</button>
 </form>

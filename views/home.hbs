@@ -1,10 +1,17 @@
+<div class="all-posts-container">
 <h1>{{title}}</h1>
-
-<div>
-  <ul>
+<br><br>
+  <ul class="post-list">
   {{#each post}}
-    <li><b><a class="decoration" href="/posts/profile/user/{{this.author.userId}}">{{this.authorUserName}}</b>: {{this.content}}
-    <img src="{{this.photo}}" alt="Post Image"></a></li>
+    <li><b><a class="post-author" href="/posts/profile/user/{{this.author.userId}}">
+    <div class="post-image-container">
+      <img src="{{this.photo}}" alt="Post Image" class="post-image">
+      </div>
+      <div class="post-detils">
+   <b>{{this.authorUserName}}</b>
+   <div class="post-content">{{this.content}}</div>
+   </div>
+    </a></li>
   {{/each}}
 </ul>
 </div>

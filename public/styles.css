@@ -55,7 +55,7 @@ nav {
   color: #fad348;
 }
 
-.description-container, .profile-container {
+.description-container, .profile-container, .all-posts-container {
   max-width: 800px; 
   margin: 0 auto; 
   padding: 25px; 
@@ -72,7 +72,7 @@ nav {
   text-align: center;
 }
 
-.btn-register, .edit-profile-link, .logout-link, .back-profile-link, .edit-post-link, .delete-post-button {
+.btn-register, .edit-profile-link, .logout-link, .back-profile-link, .edit-post-link, .delete-post-button, .back-link, .register-link, .login-link {
    padding: 15px 30px;
   text-decoration: none;
   background-color: #fff;
@@ -82,7 +82,7 @@ nav {
   transition: background-color 0.3s, color 0.3s;
 }
 
-.btn-register:hover, .edit-profile-link:hover, .logout-link:hover, .back-profile-link:hover, .edit-post-link:hover, .delete-post-button:hover {
+.btn-register:hover, .edit-profile-link:hover, .logout-link:hover, .back-profile-link:hover, .edit-post-link:hover, .delete-post-button:hover, .back-link:hover, .register-link:hover, .login-link:hover {
   background-color: #ffffff00;
   color: #fff;
 }
@@ -117,7 +117,7 @@ object-fit: cover;
   margin-bottom: 30px; 
 }
 
-.post-author {
+.post-author, .post-details {
   text-decoration: none;
   color: #fd000065;
   display: flex;
@@ -141,7 +141,7 @@ object-fit: cover;
   object-fit: contain;
 }
 
-.post-form, .edit-profile-form, .postOptions {
+.post-form, .edit-profile-form, .postOptions, .updated-container, .login-form, .register-form {
   max-width: 600px;
   margin: 20px auto;
   padding: 15px;
@@ -153,7 +153,7 @@ object-fit: cover;
   margin-top: 5px;
 }
 
-.post-form button, .edit-profile-form button {
+.post-form button, .edit-profile-form button, .submit-button, .login-form button, .register-form button {
   background-color: #00000071;
   color: white;
   padding: 10px 20px;
@@ -163,7 +163,7 @@ object-fit: cover;
   transition: background-color 0.3s, color 0.3s;
 }
 
-.post-form button:hover, .edit-profile-form button:hover {
+.post-form button:hover, .edit-profile-form button:hover, .submit-button:hover, .login-form button:hover, .register-form button:hover {
   background-color: #00000071;
   color: #fd000065;
 }
@@ -175,6 +175,10 @@ object-fit: cover;
   display: flex;
 }
 
+.buttons {
+  display: flex;
+  justify-content: space-evenly;
+}
  
  
  
