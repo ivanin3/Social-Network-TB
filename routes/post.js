@@ -53,8 +53,9 @@ router.get("/profile/user/:authorId", async (req, res) => {
 
   res.render(destinationView, {
     profile: profileView,
+    user: req.user,
+    post: profileView.posts
   });
-  console.log("Profile data:", profileView);
 });
 
 router.get("/profile/:id", async (req, res) => {
