@@ -38,43 +38,7 @@ router.get("/profile", isAuthenticated, async (req, res) => {
     });
   });
 
-  /**
- * @swagger
- * /posts/profile:
- *   put:
- *     summary: Create a new post
- *     tags: [Profile]
- *     requestBody:
- *       required: true
- *       content:
- *         application/json:
- *           schema:
- *             type: object
- *             properties:
- *               username:
- *                 type: string
- *               photo:
- *                 type: string
- *     responses:
- *       200:
- *         description: Profile updated successfully
- *       400:
- *         description: Invalid request body
- *       500:
- *         description: Internal server error
- *     parameters:
- *       - in: body
- *         name: profile
- *         description: The profile object
- *         required: true
- *         schema:
- *           type: object
- *           properties:
- *             content:
- *               type: string
- *             photo:
- *               type: string
- */
+
  /* router.put("/profile", upload.single("photo"), async (req, res) => {
     try {
       const b64 = Buffer.from(req.file.buffer).toString("base64");
@@ -133,6 +97,43 @@ router.get("/profile", isAuthenticated, async (req, res) => {
     });
 });
 
+  /**
+ * @swagger
+ * /posts/profile:
+ *   put:
+ *     summary: Edit profile
+ *     tags: [Profile]
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             type: object
+ *             properties:
+ *               username:
+ *                 type: string
+ *               photo:
+ *                 type: string
+ *     responses:
+ *       200:
+ *         description: Profile updated successfully
+ *       400:
+ *         description: Invalid request body
+ *       500:
+ *         description: Internal server error
+ *     parameters:
+ *       - in: body
+ *         name: profile
+ *         description: The profile object
+ *         required: true
+ *         schema:
+ *           type: object
+ *           properties:
+ *             username:
+ *               type: string
+ *             photo:
+ *               type: string
+ */
 router.put("/profile/edit/:userId", upload.single("photo"), async (req, res) => {
     const { userId } = req.params;
   
